@@ -9,6 +9,14 @@ gem "rails", "~> 7.0.8"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+gem 'bootstrap', '~> 4.6'
+
+gem 'chartkick'
+
+gem 'chartjs-ror', '3.7.0'
+
+gem 'rubocop', require: false
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
