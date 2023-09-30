@@ -27,10 +27,11 @@
         </ul>
         <form class="">
             <% if user_signed_in? %> 
-            <div> Welcome <%= current_user.email %> </div> 
-             <%= button_to "Sign out", destroy_user_session_path, method: :delete, :class=>"btn btn-outline-danger mr-2" %> 
+              <div> Welcome <%= current_user.name %> </div>  
+              <%= button_to( "Log Out", destroy_user_session_path, method: :delete ) %>
+              <%= button_to( "Log Out", destroy_user_session_path, method: :delete ) %>
             <% else %>
-            <a class="btn btn-outline-primary mr-2" href="users/sign_in">Sign In</a>
+             <a class="btn btn-outline-primary mr-2" href="users/sign_in">Sign In</a>
              <a class="btn btn-outline-primary mr-2" href="users/sign_up">Register</a>
             <% end %>
     
