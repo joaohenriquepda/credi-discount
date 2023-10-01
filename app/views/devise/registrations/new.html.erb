@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for([resource_name, resource.with_address], url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -22,6 +22,38 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+
+
+  <%= f.fields_for :address do |address_form| %>
+    <div class="field">
+      <%= address_form.label :street %><br />
+      <%= address_form.text_field :street %>
+    </div>
+    <div class="field">
+      <%= address_form.label :number %><br />
+      <%= address_form.text_field :number %>
+    </div>
+        <div class="field">
+      <%= address_form.label :district %><br />
+      <%= address_form.text_field :district %>
+    </div>
+
+    <div class="field">
+      <%= address_form.label :city %><br />
+      <%= address_form.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= address_form.label :state %><br />
+      <%= address_form.text_field :state %>
+    </div>
+
+
+    <div class="field">
+      <%= address_form.label :zip_code %><br />
+      <%= address_form.text_field :zip_code %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :password %>
