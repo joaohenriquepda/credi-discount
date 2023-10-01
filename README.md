@@ -1,24 +1,47 @@
-# README
+# Credi Discount
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+* Getting Started
+    * Prerequisites
+    * Installation
+* Usage
+* Contributing
+* License
 
-* Ruby version
+## Getting Started
+Provide detailed instructions on how to get the project up and running. This should include:
 
-* System dependencies
+## Prerequisites
+List all the software, libraries, and tools that need to be installed on the user's system to run this project. For example:
 
-* Configuration
+- Ruby 3.2.1
+- Rails 7.0.8
+- Docker 23.0
+- Docker-Compose 2.17
+- PostgreSQL
+## Instalation
 
-* Database creation
+1 - Clone repository using ssh key
+    
+```bash
+$ git clone git@github.com:joaohenriquepda/credi-discount.git
+```
+2 - Change to the project directory:
 
-* Database initialization
+```bash
+$ cd credi-discount
+```
+3 - Use docker-compose to start local development environment
 
-* How to run the test suite
+```bash
+$ docker-compose up
+```
+## Usage
+To-Do
+## Contributing
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
