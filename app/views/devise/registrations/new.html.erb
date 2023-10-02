@@ -1,76 +1,101 @@
-<h2>Sign up</h2>
+<h2>Create a new profile</h2>
 
 <%= form_for([resource_name, resource.with_address], url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+  <h3>basic Informations</h3>
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, class: 'form-control', autofocus: true %>
+    </div>
 
-    <div class="field">
-    <%= f.label :cpf %><br />
-    <%= f.text_field :cpf %>
-  </div>
+    <div class="col-md-2">
+      <%= f.label :cpf %><br />
+      <%= f.text_field :cpf, class: 'form-control' %>
+    </div>
 
-    <div class="field">
-    <%= f.label :birth_date %><br />
-    <%= f.date_field :birth_date %>
+    <div class="col-md-2">
+      <%= f.label :birth_date %><br />
+      <%= f.date_field :birth_date, class: 'form-control' %>
+    </div>
   </div>
-
+  
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email,  autocomplete: "email", class: 'form-control' %>
   </div>
 
 
+  <br/>
+  <h5>Address</h5>
+
   <%= f.fields_for :address do |address_form| %>
-    <div class="field">
-      <%= address_form.label :street %><br />
-      <%= address_form.text_field :street %>
-    </div>
-    <div class="field">
-      <%= address_form.label :number %><br />
-      <%= address_form.text_field :number %>
-    </div>
-        <div class="field">
-      <%= address_form.label :district %><br />
-      <%= address_form.text_field :district %>
-    </div>
 
-    <div class="field">
-      <%= address_form.label :city %><br />
-      <%= address_form.text_field :city %>
-    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <%= address_form.label :street %><br />
+        <%= address_form.text_field :street, class: 'form-control' %>
+      </div>
 
-    <div class="field">
-      <%= address_form.label :state %><br />
-      <%= address_form.text_field :state %>
-    </div>
+      <div class="col-md-3">
+        <%= address_form.label :number %><br />
+        <%= address_form.text_field :number, class: 'form-control' %>
+      </div>
 
 
-    <div class="field">
-      <%= address_form.label :zip_code %><br />
-      <%= address_form.text_field :zip_code %>
+      <div class="col-md-4">
+        <%= address_form.label :district %><br />
+        <%= address_form.text_field :district , class: 'form-control'%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= address_form.label :district %><br />
+        <%= address_form.text_field :district , class: 'form-control'%>
+      </div>
+
+      <div class="col-md-4">
+        <%= address_form.label :city %><br />
+        <%= address_form.text_field :city, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-2">
+        <%= address_form.label :state %><br />
+        <%= address_form.text_field :state, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-2">
+        <%= address_form.label :zip_code %><br />
+        <%= address_form.text_field :zip_code, class: 'form-control' %>
+      </div>
+
     </div>
   <% end %>
 
-  <div class="field">
+  <br/>
+  <h5>Password</h5>
+  <div class="row">
+  <div class="col-md-4">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="col-md-4">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
   </div>
+   </div>
+  <br/>
+
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn btn-primary' %>
+    <%= render "devise/shared/links" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
