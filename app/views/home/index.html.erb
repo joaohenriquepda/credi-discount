@@ -2,7 +2,23 @@
   <div class="container">
 
   <br/> 
+
+<div class="row">
+<div class="col-md-6">
   <h1>List of Users</h1>
+</div>
+<div class="col-md-6 justify-content-between align-items-center">
+
+ <div>
+    <span>Items per page</span>
+    <ul class="list-group list-group-horizontal">
+      <% PAGE_SIZES.each do |size| %>
+        <li class="list-group-item"><%= link_to size, url_for(per_page: size) %></li>
+      <% end %>
+    </ul>
+  </div>
+ </div>
+</div>
 
 <table class="table">
   <thead>
@@ -21,7 +37,6 @@
         <td><%= user.email %></td>
         <td>
           <div class="btn-group" role="group" aria-label="User Actions">
-            <%= link_to 'Edit', edit_user_registration_path(@user), class: 'btn btn-danger' %>
             <%= link_to 'View Profile', user_path(user.id), class: 'btn btn-info' %>
           </div>
         </td>
@@ -29,3 +44,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @users,  class: 'pagination justify-content-center' %>
+
+
+

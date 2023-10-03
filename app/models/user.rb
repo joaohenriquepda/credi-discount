@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -14,10 +15,4 @@ class User < ApplicationRecord
     build_address if address.nil?
     self
   end
-  
-  # def with_contacts
-  #  build_contacts if contacts.nil?
-  #  self
-  # end
-
 end

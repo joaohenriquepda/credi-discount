@@ -21,6 +21,7 @@ gem 'devise'
 
 gem 'faker'
 
+gem 'kaminari'
 
 
 # Use postgresql as the database for Active Record
