@@ -1,13 +1,31 @@
 <div class="container-flouid">
   <div class="container">
-   
-    <h1>List of Users</h1>
 
-<ul>
-  <% @users.each do |user| %>
-    <li><%= user.name %></li>
-  <% end %>
-</ul>
+  <br/> 
+  <h1>List of Users</h1>
 
-  </div>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="User Actions">
+            <%= link_to 'Edit', edit_user_registration_path(@user), class: 'btn btn-danger' %>
+            <%= link_to 'View Profile', user_path(user.id), class: 'btn btn-info' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

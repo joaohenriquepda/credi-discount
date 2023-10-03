@@ -3,7 +3,7 @@
 <%= form_for([resource_name, resource.with_address], url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <h3>basic Informations</h3>
+  <h3>Basic Informations</h3>
   <div class="row">
     <div class="col-md-8">
       <%= f.label :name %><br />
@@ -74,46 +74,54 @@
     </div>
   <% end %>
 
-  <%= self %>
-  <%= f.fields_for :contacts, Contact.new do |contacts_form| %>
-    <div class="row">
-      <div class="col-md-5">
-        <%= contacts_form.label :name %><br />
-        <%= contacts_form.text_field :name, class: 'form-control' %>
-      </div>
-      <div class="col-md-3">
-        <%= contacts_form.label :phone %><br />
-        <%= contacts_form.text_field :phone, class: 'form-control' %>
-      </div>
-            
-      <div class="col-md-3">
-        <%= contacts_form.label :type %><br />
-        <%= contacts_form.select :contact_type, Contact.contact_types.keys, class: 'form-control' %>
-      </div>
-  <% end %>      
-
   <br/>
+  <h5>Contacts</h5>
+
+    <%= f.fields_for :contacts, Contact.new do |contacts_form| %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= contacts_form.label :name %><br />
+          <%= contacts_form.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="col-md-3">
+          <%= contacts_form.label :phone %><br />
+          <%= contacts_form.text_field :phone, class: 'form-control' %>
+        </div>       
+        <div class="col-md-3">
+          <%= contacts_form.label :type %><br />
+          <%= contacts_form.select :contact_type, Contact.contact_types.keys, class: 'form-control' %>
+        </div>
+      </div>  
+    <% end %>      
+  
+  <br/>
+
   <h5>Password</h5>
   <div class="row">
-  <div class="col-md-4">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+    <div class="col-md-3">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+    <div class="col-md-3">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="col-md-4">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-  </div>
-   </div>
+
   <br/>
 
-
-  <div class="actions">
-    <%= f.submit "Sign up", class: 'btn btn-primary' %>
-    <%= render "devise/shared/links" %>
+  <div class="row">
+    <div class="actions col-md-6">
+      <%= render "devise/shared/links" %>
+    </div>
+    <div class="actions col-md-6">
+      <%= f.submit "Sign up", class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
 
