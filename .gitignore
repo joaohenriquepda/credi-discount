@@ -14,6 +14,8 @@
 !/tmp/.keep
 env
 .env
+node_modules
+
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*

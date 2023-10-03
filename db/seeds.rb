@@ -13,7 +13,9 @@ user = User.create(
     birth_date:"1990-10-10", 
     email:"joaohenrique.p.almeida@gmail.com",
     password:"123456",
-    password_confirmation:"123456")
+    password_confirmation:"123456",
+    salary: 3000.00    
+)
 
 Address.create(user_id: user.id,street:"Quadra 302", number:"02", district:"", 
     city:"Santa Maria", state:"Distrito Federal", zip_code:"72502506")
@@ -21,14 +23,15 @@ Address.create(user_id: user.id,street:"Quadra 302", number:"02", district:"",
 Contact.create({name: "Marcos", phone:"(61) 90001-9352", contact_type:1, user_id: user.id})   
 Contact.create({name: "Maria", phone:"(61) 9901-3268", contact_type:1, user_id: user.id})         
 
-15.times do 
+40.times do 
     password = Faker::Internet.password
     user =  User.create({name: Faker::Name.name,
                 email: Faker::Internet.email,    
                 cpf: Faker::IDNumber.brazilian_citizen_number,
                 birth_date:Faker::Date.birthday(min_age: 18, max_age: 65),
                 password:password,
-                password_confirmation:password})
+                password_confirmation:password,
+                salary:Faker::Number.within(range: 1000..15000)})
 
     Address.create(
             user_id: user.id, 

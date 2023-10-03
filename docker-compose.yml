@@ -18,6 +18,12 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: crediDiscount@1234
       POSTGRES_DB: credi_discount_development
+  db-test:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: crediDiscountTest@1234
+      POSTGRES_DB: credi_discount_test
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
