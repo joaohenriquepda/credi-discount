@@ -11,6 +11,35 @@
   </head>
 
   <body>
-    <%= yield %>
+  <div class="container-flouid ">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container ">
+     <a class="navbar-brand" href="/">
+        <h3>Credi Discount</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" >
+          <form class="">
+              <% if user_signed_in? %> 
+                <div> Welcome <%= current_user.name %> </div>  
+                <%= link_to "Log Out", signout_path, class:"btn btn-outline-primary mr-2" %>
+                 <%= link_to 'Edit', edit_user_registration_path(current_user), class: 'btn btn-secondary' %>
+              <% else %>
+              <%= link_to "Sign In", new_user_session_path, class:"btn btn-outline-primary mr-2"  %>
+              <%= link_to "Register", new_user_registration_path, class:"btn btn-outline-primary mr-2"  %>
+              <% end %>
+          </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+      <div class="container-flouid">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
+
