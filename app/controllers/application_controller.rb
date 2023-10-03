@@ -13,8 +13,7 @@ class ApplicationController < ActionController::Base
             :email,
             :password, 
             :password_confirmation, 
-            address_attributes:[:street, :number, :district, :city, :state, :zip_code]] )
+            address_attributes:[:street, :number, :district, :city, :state, :zip_code],
+            contacts_attributes:[:name, :phone, :contact_type]])
     end
-
-
 end
