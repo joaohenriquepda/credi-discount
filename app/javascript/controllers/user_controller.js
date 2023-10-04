@@ -8,6 +8,7 @@ export default class extends Controller {
 
   connect() {
     this.formTarget.hidden = true
+    this.update()
   }
 
   initialize() {
@@ -17,7 +18,7 @@ export default class extends Controller {
   update() {
 
     let salary = this.inputTarget.value
-    let outputValue = parseFloat(this.calculate_INSS(salary).toFixed(2))
+    let outputValue = parseFloat(this.calculate_INSS(salary))
 
     if (this.inputTarget.value >= 10) {
       this.formTarget.hidden = false
@@ -44,7 +45,7 @@ export default class extends Controller {
       total_discount = 1045.00 * 0.075 + (2089.60 - 1045.00) * 0.09 + (3134.40 - 2089.60) * 0.12 + (6101.06 - 3134.40) * 0.14
     }
 
-    return total_discount;
+    return total_discount.toFixed(2);
   }
 
 }

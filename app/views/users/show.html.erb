@@ -5,11 +5,11 @@
   <div class="col-md-6">
     <h2>Basic Information:</h2> 
     <% if @user.address %>
-      <p><strong>Name: </strong><%= @user.name %></p>
-      <p>CPF: <%= @user.cpf %></p>
-      <p>Email: <%= @user.email %></p>
-      <p>Salary: <%= @user.salary %></p>
-       <p>Total INSS discount: <%= @user.total_inss_discount %></p>
+      <p><strong>Name:</strong> <%= @user.name %></p>
+      <p><strong>CPF:</strong> <%= @user.cpf %></p>
+      <p><strong>Email: </strong> <%= @user.email %></p>
+      <p><strong>Salary: </strong> <%= @user.salary %></p>
+      <p><strong>Total INSS discount: </strong> <%= @user.total_inss_discount %></p>
     <% else %>
       <p>No address provided</p>
     <% end %>
@@ -18,10 +18,10 @@
   <div class="col-md-6">
 <h2>Address:</h2>
     <% if @user.address %>
-      <p>Street: <%= @user.address.street %></p>
-      <p>City: <%= @user.address.city %></p>
-      <p>State: <%= @user.address.state %></p>
-      <p>Zip Code: <%= @user.address.zip_code %></p>
+      <p><strong>Street: </strong><%= @user.address.street %></p>
+      <p><strong>City: </strong><%= @user.address.city %></p>
+      <p><strong>State:</strong> <%= @user.address.state %></p>
+      <p><strong>Zip Code: </strong><%= @user.address.zip_code %></p>
     <% else %>
       <p>No address provided</p>
     <% end %>
@@ -33,7 +33,11 @@
 <% if @user.contacts.any? %>
   <ul>
     <% @user.contacts.each do |contact| %>
-      <li>Name: <%= contact.name %>, Phone: <%= contact.phone %>, Type: <%= contact.contact_type %></li>
+      <li>
+        <strong>Name:</strong> <%= contact.name %>, 
+        <strong>Phone:</strong> <%= contact.phone %>, 
+        <strong>Type:</strong> <%= contact.contact_type %>
+      </li>
     <% end %>
   </ul>
 <% else %>

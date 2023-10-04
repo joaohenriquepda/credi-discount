@@ -25,42 +25,130 @@
     <%= f.email_field :email,  autocomplete: "email", class: 'form-control' %>
   </div>
 
+    <div class="row"  data-controller='user' data-user-salary-value="salary">
+    <div class="col-md-6">
+      <%= f.label :salary %><br />
+      <%= f.text_field :salary, class: 'form-control', data:{action:"input->user#update", user_target:"input"}%>
+    </div>
+
+    <div class="col-md-6" data-user-target="form" >
+      <%= f.label "Estimated value for INSS discount" %><br />
+      <%= f.text_field :total_inss_discount, class: 'form-control', data:{ user_target:"output", user_discount_value:"discount"}%>
+    </div>
+  </div>
+
+  <br/>
+  <h5>Address</h5>
+
+  <%= f.fields_for :address do |address_form| %>
+
+    <div class="row">
+      <div class="col-md-5">
+        <%= address_form.label :street %><br />
+        <%= address_form.text_field :street, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-3">
+        <%= address_form.label :number %><br />
+        <%= address_form.text_field :number, class: 'form-control' %>
+      </div>
 
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div class="col-md-4">
+        <%= address_form.label :district %><br />
+        <%= address_form.text_field :district , class: 'form-control'%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= address_form.label :district %><br />
+        <%= address_form.text_field :district , class: 'form-control'%>
+      </div>
+
+      <div class="col-md-4">
+        <%= address_form.label :city %><br />
+        <%= address_form.text_field :city, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-2">
+        <%= address_form.label :state %><br />
+        <%= address_form.text_field :state, class: 'form-control' %>
+      </div>
+
+      <div class="col-md-2">
+        <%= address_form.label :zip_code %><br />
+        <%= address_form.text_field :zip_code, class: 'form-control' %>
+      </div>
+
+    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+
+  <br/>
+  <h5>Contacts</h5>
+   <% @user.contacts.each do |contact| %>
+    <%= f.fields_for :contacts, Contact.new do |contacts_form| %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= contacts_form.label :name %><br />
+          <%= contacts_form.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="col-md-3">
+          <%= contacts_form.label :phone %><br />
+          <%= contacts_form.text_field :phone, class: 'form-control',  onChange: "keyup()" %>
+        </div>       
+        <div class="col-md-3">
+          <%= contacts_form.label :type %><br />
+          <%= contacts_form.select :contact_type, Contact.contact_types.keys, class: 'form-control'  %>
+        </div>
+      </div>  
+    <% end %>   
+   <% end %>    
+
+
+  <br/>
+  <h5>Password</h5>
+  <div class="row">
+    <div class="actions col-md-6">
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control'%>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+    </div>  
+
+    <div class="actions col-md-6">
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class: 'form-control' %>
+      </div>
+    </div>
+  </div>  
+
+  <br/>
+  <h5> Confirm Update</h5>
+
+  <div class="row">
+    <div class="actions col-md-7">
+      <div class="field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
+      </div>
+    </div>  
   </div>
+  <br/> 
+    <%= button_to "update", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :put, class: 'btn btn-primary' %>  
+  <% end %>
+  <br/>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="btn-group" role="group" aria-label="User Actions">
+    <%= button_to "Back", :back, class: 'btn btn-info' %>
+    <%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-x
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<div class="btn-group" role="group" aria-label="User Actions">
-  <%= link_to "Back", :back, class: 'btn btn-info' %>
-  <button type="button" class="btn btn-danger">Delete</button>
-</div>
