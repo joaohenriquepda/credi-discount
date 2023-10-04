@@ -1,5 +1,6 @@
 require 'inss_calculator'
 
+# Model
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -14,7 +15,6 @@ class User < ApplicationRecord
   has_many :contacts, dependent: :destroy
   accepts_nested_attributes_for :contacts, allow_destroy: true
 
-
   def with_address
     build_address if address.nil?
     self
@@ -23,8 +23,6 @@ class User < ApplicationRecord
   private
 
   def calculate_inss_values
-    self.total_inss_discount, self.salary_band = InssCalculator.new(self.salary).get_inss_values
+    self.total_inss_discount, self.salary_band = InssCalculator.new(salary).inss_values
   end
-
-
 end

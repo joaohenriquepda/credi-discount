@@ -100,7 +100,7 @@
     </template>
 
     <%= f.fields_for :contacts do |contacts_form| %>
-      <%= render "partials/contact_form", f: contacts_form %>
+      <%= render "devise/shared/contact_form", f: contacts_form %>
     <% end %>
 
     <div data-nested-form-target="target"></div>
