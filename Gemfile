@@ -23,6 +23,11 @@ gem 'faker'
 
 gem 'kaminari'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0.0'
+end
+
+
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
