@@ -86,26 +86,27 @@
 
 
   <br/>
-  <h5>Contacts</h5>
-   <% @user.contacts.each do |contact| %>
-    <%= f.fields_for :contacts, Contact.new do |contacts_form| %>
-      <div class="row">
-        <div class="col-md-6">
-          <%= contacts_form.label :name %><br />
-          <%= contacts_form.text_field :name, class: 'form-control' %>
-        </div>
-        <div class="col-md-3">
-          <%= contacts_form.label :phone %><br />
-          <%= contacts_form.text_field :phone, class: 'form-control',  onChange: "keyup()" %>
-        </div>       
-        <div class="col-md-3">
-          <%= contacts_form.label :type %><br />
-          <%= contacts_form.select :contact_type, Contact.contact_types.keys, class: 'form-control'  %>
-        </div>
-      </div>  
-    <% end %>   
-   <% end %>    
 
+  <h5>Contacts</h5>
+    <div class="row"  data-controller='nested-form' nested_form_wrapper_selector_value='.nested-form-wrapper' >
+    <div class="col-md-6">
+    <template data-nested-form-target="template">
+      <%= f.fields_for :contacts, Contact.new,child_index: 'NEW_RECORD' do |contacts_form| %>
+        <%= render "partials/contact_form", f: contacts_form %>
+      <% end %>
+    </template>
+
+    <%= f.fields_for :contacts do |contacts_form| %>
+      <%= render "partials/contact_form", f: contacts_form %>
+    <% end %>
+
+    <!-- Inserted elements will be injected before that target. -->
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add"  class='btn btn-primary'>Add todo</button>
+    </div>
+  </div>
+ 
 
   <br/>
   <h5>Password</h5>

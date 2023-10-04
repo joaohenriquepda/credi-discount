@@ -21,12 +21,11 @@ class ApplicationController < ActionController::Base
             :name, 
             :cpf, 
             :birth_date,
-            :email,
             :password, 
             :password_confirmation, 
             :salary,
             :total_inss_discount,
             address_attributes:[:street, :number, :district, :city, :state, :zip_code],
-            contacts_attributes:[:name, :phone, :contact_type]])       
+            contacts_attributes:[:name, :phone, :contact_type]])            
     end
 end
