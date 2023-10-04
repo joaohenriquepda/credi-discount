@@ -16,5 +16,8 @@ class UserTest < ActiveSupport::TestCase
                 })
 
     assert_equal 281.63, user.total_inss_discount
+    
   end
+
+  
 end

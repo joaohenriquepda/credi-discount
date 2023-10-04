@@ -33,14 +33,16 @@
     <%= f.email_field :email,  autocomplete: "email", class: 'form-control' %>
   </div>
 
-  <div class="row"  data-controller='user'>
+  <br/>
+  <div class="row"  data-controller='user' data-user-salary-value="salary">
     <div class="col-md-6">
       <%= f.label :salary %><br />
-      <%= f.text_field :salary, class: 'form-control',data:{action:"input->user#greet"}%>
+      <%= f.text_field :salary, class: 'form-control', data:{action:"input->user#update", user_target:"input"}%>
     </div>
 
-    <div class="col-md-6">
-        
+    <div class="col-md-6" data-user-target="form" >
+      <%= f.label "Estimated value for INSS discount" %><br />
+      <%= f.text_field :total_inss_discount, class: 'form-control', data:{ user_target:"output", user_discount_value:"discount"}%>
     </div>
   </div>
 
