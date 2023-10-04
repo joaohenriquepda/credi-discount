@@ -23,7 +23,7 @@ Address.create(user_id: user.id, street: "Quadra 302", number: "02", district: "
 Contact.create({ name: "Marcos", phone: "(61) 90001-9352", contact_type: 1, user_id: user.id })
 Contact.create({ name: "Maria", phone: "(61) 9901-3268", contact_type: 1, user_id: user.id })
 
-5.times do
+30.times do
   password = Faker::Internet.password
   user = User.create({ name: Faker::Name.name,
                        email: Faker::Internet.email,

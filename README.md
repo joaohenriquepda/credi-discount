@@ -6,9 +6,9 @@ application up and running.
 * Getting Started
     * Prerequisites
     * Installation
+    * Tests
 * Usage
-* Contributing
-* License
+* Retro and Postmortem
 
 ## Getting Started
 Provide detailed instructions on how to get the project up and running. This should include:
@@ -38,10 +38,60 @@ $ cd credi-discount
 ```bash
 $ docker-compose up
 ```
+
+4 - For access rails container while docker-compose running execute
+``` bash
+$ docker-compose exec api /bin/sh
+``` 
+
+4 - Accessing the container it will be possible to execute commands necessary for initial access to the project
+``` bash
+$ rails db:migrate && rails db:seed
+``` 
+The command above will create the database and populate it with information from seed.rb
+
+## Tests
+
+After clonning repository and access directory and run docker-compose up
+
+For access rails container while docker-compose running execute
+``` bash
+$ docker-compose exec api /bin/sh
+``` 
+
+Accessing the container it will be possible to run the tests
+``` bash
+$ rails db:migrate RAILS_ENV=test && rails db:seed RAILS_ENV=test
+``` 
+
+After completing the execution of the commands execute
+``` bash
+$ rails test
+``` 
+
 ## Usage
-To-Do
-## Contributing
-## License
+You must use the browser localhost:3000 to view the home, and on this page, the system's initial list of all users registered will be displayed.
+
+It will be allowed to log in or register once again.
+Viewing all data is feasible, but only logged-in profiles who have access to their information will be able to update it.
+
+## Retro e PostMortem
+*essa parte vai em pt-br, acho que consigo ser mais claro*
+
+### Retro
+- Algumas decisões para o projeto podem ter atrapalhado o fluxo direto para completude:
+    - Stimulus, a versão usada do Rails já traz configurada para o uso e foi necessário uma curva de aprendizagem e tempo colocado para adiciona as função reativas para o frontend(campo de estimativa do valor do imposto e campo de adicão de contatos)
+    - Trabalhar com o rails como monolíto, por sempre ter usado o framework como API algumas coisas simples levaram mais tempo que o necessário
+    - Uso Devise somado a baixa prática do Rails monolíto, como o rails é um framework *“Convention Over Configuration”* boa parte das abstrações do Devise não são ficam claras e trabalhar
+    - Adicionar alguma gem para Admin Dashboard para ter mais controle e ter um RBAC mais completo poderia ter sido feito
+
+### Postmortem
+ - A funcionalidade de relatórios de funcionários não foi realizada
+ - O deploy do projeto não foi realizado    
+
+
+
+
 
 
 
